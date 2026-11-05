@@ -11,7 +11,8 @@
     "start": "node dist/server.js",
     "start:worker": "node dist/ingestion/worker.js",
     "typecheck": "tsc --noEmit",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "test:cache": "tsx scripts/test-cache-logic.ts"
   },
   "keywords": [],
   "author": "",

@@ -22,6 +22,11 @@ const schema = z.object({
   MAX_UPLOAD_MB: z.coerce.number().default(10),
   TOP_K: z.coerce.number().default(5),
   MIN_SIMILARITY: z.coerce.number().default(0.25),
+
+  // Semantic cache (starting values only; the benchmark in package 2 decides the final threshold)
+  CACHE_SIMILARITY_THRESHOLD: z.coerce.number().min(0).max(1).default(0.88),
+  CACHE_TTL_SECONDS: z.coerce.number().int().positive().default(86400),
+  PROMPT_VERSION: z.string().default("v1"), // bump when SYSTEM_PROMPT changes: invalidates old cache entries
 });
 
 const parsed = schema.safeParse(process.env);
