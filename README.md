@@ -6,12 +6,35 @@ Semantic cache, analytics and benchmarks arrive in package 2. The Steer-style fr
 ## What you need installed
 | Tool | Check | Notes |
 |---|---|---|
-| Node.js 22 or newer | `node -v` | https://nodejs.org (LTS) |
+| Node.js 22 (via NVM, see below) | `node -v` | install NVM first, then Node |
 | Git | `git --version` | |
 | Docker Desktop | `docker --version` | Windows: enable WSL2. Low RAM? See "Low-end PC" below |
 | An OpenAI-compatible API key | | Needs a chat model AND an embeddings model |
 
 Windows: run all commands in **Git Bash** (installed with Git).
+
+## Node version (NVM)
+This project is pinned to **Node 22** (`.nvmrc` in the project root, `engines` in `server/package.json`).
+`server/.npmrc` sets `engine-strict=true`, so `npm install` fails with a clear message on the wrong Node version.
+
+**Windows** (use *nvm-windows*: https://github.com/coreybutler/nvm-windows/releases, install `nvm-setup.exe`, then open a NEW terminal, as Administrator the first time):
+```bash
+nvm install 22
+nvm use 22
+node -v        # v22.x.x
+```
+nvm-windows does NOT read `.nvmrc` automatically, so run `nvm use 22` in each new terminal.
+If you already have Node installed from nodejs.org, uninstall it first, or `nvm use` may not take effect.
+
+**macOS / Linux / WSL** (https://github.com/nvm-sh/nvm):
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
+# restart the terminal, then, in the project root:
+nvm install      # reads .nvmrc
+nvm use          # reads .nvmrc
+node -v
+```
+Using Docker for Postgres/Redis is unaffected by NVM.
 
 ## Setup (one time)
 
