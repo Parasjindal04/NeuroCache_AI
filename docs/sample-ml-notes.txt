@@ -1,0 +1,16 @@
+Machine Learning Notes
+
+Overfitting
+Overfitting happens when a model learns the training data too well, including its noise and random fluctuations. The model performs very well on training data but poorly on unseen test data, because it has memorized examples instead of learning general patterns. Common causes are a model that is too complex, too little training data, or training for too many epochs.
+
+Underfitting
+Underfitting is the opposite problem. The model is too simple to capture the structure in the data, so it performs poorly on both training and test data. Fixes include using a more expressive model, adding useful features, or training longer.
+
+Preventing overfitting
+Regularization (L1 and L2) adds a penalty for large weights, which discourages overly complex models. Dropout randomly disables neurons during training. Early stopping halts training when validation error stops improving. Collecting more data and using data augmentation also help.
+
+Cross-validation
+In k-fold cross-validation the dataset is split into k parts. The model is trained k times, each time using a different part as the validation set. The average score gives a more reliable estimate of how the model will perform on new data than a single train/test split.
+
+Bias-variance tradeoff
+High bias means the model makes strong simplifying assumptions and underfits. High variance means the model is very sensitive to the training set and overfits. Good models balance the two.
