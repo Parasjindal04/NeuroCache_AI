@@ -25,6 +25,7 @@ server/src/config/env.ts, server/.env.example, server/package.json (script test:
 - Default cache threshold 0.88 is unmeasured.
 
 ## Environment assumptions
+User has NO Docker (i3 10th gen, 8 GB RAM, SSD): use Neon (Postgres+pgvector) and Redis Cloud free plan (Search included per Redis docs, 30 MB / 30 connections). Cache entries must stay small (~6 KB vector each => roughly a few thousand entries max).
 OpenAI-compatible provider, text-embedding-3-small (1536 dims), Node 22+, Docker for Postgres + Redis Stack. User is on a low-end PC (Delhi): keep RAM low, worker concurrency 1, no local ML models, defer reranking/Ragas/streaming.
 
 ## Exact next steps

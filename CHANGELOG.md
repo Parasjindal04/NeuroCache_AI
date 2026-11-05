@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## Session 3
+- feat(infra): no-Docker path (Neon + Redis Cloud free plans) documented in README. fix(db): pg pool now handles idle-connection errors (previously an unhandled 'error' event could crash the process), smaller pool, keepAlive, cold-start-friendly timeouts.
 - chore: NVM support: .nvmrc (22), engines >=22 in server/package.json, server/.npmrc engine-strict, README section for nvm-windows and nvm-sh.
 - Added tracking docs (PROJECT_STATUS, TASKS, ARCHITECTURE, CHANGELOG) and git history.
 - feat(cache): types, question normalization + sha256 key, tag escaping, cacheability rules (time-sensitive, user-specific, too short, dangling reference), intent guard (numbers, negation). 15 unit tests.

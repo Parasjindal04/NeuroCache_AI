@@ -36,6 +36,24 @@ node -v
 ```
 Using Docker for Postgres/Redis is unaffected by NVM.
 
+## No Docker? Use free cloud databases (recommended for low-RAM PCs)
+Docker Desktop + WSL2 typically uses 2 GB+ of RAM. On an 8 GB laptop, free hosted services are lighter. You then skip `docker compose` entirely and only change two lines in `server/.env`.
+
+**A. Postgres with pgvector: Neon** (https://neon.com, free plan, no credit card)
+1. Sign up, create a project, and pick the region closest to you.
+2. Open the project's **Connect** panel and copy the connection string (it looks like `postgresql://user:pass@ep-xxxx.region.aws.neon.tech/neondb?sslmode=require`).
+3. Put it in `server/.env` as `DATABASE_URL=...`. `npm run migrate` enables the pgvector extension automatically.
+Note: the free compute suspends after 5 minutes idle, so the first request after a pause can take a few seconds.
+
+**B. Redis with Search: Redis Cloud** (https://redis.io/try-free, free 30 MB plan)
+1. Sign up and create a **free** database; pick a nearby region. If the form has a *Type* setting, choose **Redis Stack**.
+2. On the database page, copy the public endpoint (host:port) and the default user's password.
+3. Put it in `server/.env` as `REDIS_URL=redis://default:YOUR_PASSWORD@HOST:PORT` (use `rediss://` if the console says TLS is required).
+Limits of the free plan: 30 MB and 30 connections. That is enough for development and the benchmark, but keep test documents small.
+
+Then continue from "Install backend packages" below and skip the `docker compose` step. `/api/health` should still return all four values as `true`.
+Benchmark note: with cloud databases, measured latency includes network time. Run every benchmark configuration on the same setup so comparisons stay fair.
+
 ## Setup (one time)
 
 **1. Start Postgres and Redis.** Run in the project root (`neurocache-ai/`):
